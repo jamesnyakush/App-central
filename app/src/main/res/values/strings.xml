@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">App Central</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_the_launcher_app">Welcome to the Launcher App</string>
+    <string name="continue_btn">Continue</string>
+    <string name="to_continue_set_the_app_as_your_default_home">To continue, set the app as your default home</string>
+    <string name="finish">Finish</string>
+    <string name="thanks_for_setting_us_as_the_default_home">Thanks for setting us as the default home</string>
+    <string name="home_screen">Home Screen</string>
 </resources>
