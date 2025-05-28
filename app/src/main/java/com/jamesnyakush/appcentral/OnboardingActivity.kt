@@ -47,13 +47,6 @@ class OnboardingActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-
         currentStep = when {
             savedInstanceState != null -> savedInstanceState.getInt("current_step", 1)
             else -> prefs.getInt("current_onboarding_step", 1)
