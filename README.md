@@ -1,5 +1,5 @@
 # App-central
-
+This is a take home test.
 # Screenshot 
 
 | Step 1                                      | Step 2                                      | Step 3                                        | Step 4                                       | Step 5                                       |
@@ -13,31 +13,27 @@
 
 ## 📘 Timber Initialization in Application Class
 The AppCentral class extends the Application class and is responsible for initializing the Timber logging framework across the app. By centralizing the setup in the application’s lifecycle, it ensures that logging is consistently configured from the start. In debug builds, a custom DebugTree is planted, enhancing log readability by including line numbers with each tag—making it easier to trace issues during development. In production builds, the plan is to replace this with a CrashlyticsTree to route critical logs and errors to Firebase Crashlytics, while avoiding verbose debug output. This approach ensures a clear separation between development and production logging behaviors.
-
+![App](/docs/screenshot/app-fun.png)
 
 ## The project includes two main activities:
 **HomeActivity:** This activity uses **activity_home.xml** as its layout, which is based on a **ConstraintLayout** containing a single TextView.
-OnboardingActivity: This activity uses activity_onboarding.xml as its layout. The layout contains a **FrameLayout** that serves as a **fragment container** for managing the different onboarding steps **(e.g., Step1Fragment, Step2Fragment, Step3Fragment)**.
-My Solution
+**OnboardingActivity:** This activity uses activity_onboarding.xml as its layout. The layout contains a **FrameLayout** that serves as a **fragment container** for managing the different onboarding steps **(e.g., Step1Fragment, Step2Fragment, Step3Fragment)**.
+
+### My Solution
 Inside **HomeActivity**, I have a function named **checkOnboardingStatus** that accepts an optional intentFlags parameter. This function checks whether the onboarding process has been completed.
 If **onboarding** has not been completed, it redirects the user to **OnboardingActivity**, optionally applying the provided **intent flags**.
 
-
-
-
-
-
+![App](/docs/screenshot/checkonboarding-fun.png)
 
 # 🏠 HomeActivity Overview
 In HomeActivity, I’m using ViewBinding to manage the layout efficiently. Inside the **onCreate()** method, I call the **checkOnboardingStatus()** function without any **intent flags**.
 This setup ensures that when the app is launched and the onboarding has not been completed, the user is redirected to OnboardingActivity. When onboarding is completed **(e.g., after choosing the app as the default launcher in step 2)**, the user is seamlessly taken to step 3, and only after completing step 3, they return to **HomeActivity**. This ensures step 3 is not skipped or bypassed.
 
 ##🔄 Handling Existing Instances with
-
 ### onNewIntent
 Additionally, I override the **onNewIntent()** method in HomeActivity to handle scenarios where the activity is brought to the foreground from the back stack.
 In this method, I call **checkOnboardingStatus()** again, but this time I pass the **Intent.FLAG_ACTIVITY_CLEAR_TOP** flag. This flag ensures that if HomeActivity is already running in the task stack, it is brought to the front, and any intermediate activities **(such as onboarding fragments or steps)** above it are cleared. This helps maintain a clean and predictable navigation experience.
-
+![App](/docs/screenshot/homeactivity-fun.png)
 
 # OnboardingActivity  Overview
 
@@ -54,11 +50,11 @@ This code defines an Activity Result Launcher that handles the result of request
     - It navigates to step 3 of the onboarding process
 4. If the app is not set as the default launcher **(user declined)**:
     - It simply logs that the app is not set as default launcher
-      This launcher is used in the **requestDefaultLauncher()** method, which is called when the user clicks the continue button in Step 2 of the onboarding process. The launcher handles the transition from Step 2 to Step 3 when the user successfully sets the app as the default launcher.
+    - This launcher is used in the **requestDefaultLauncher()** method, which is called when the user clicks the continue button in Step 2 of the onboarding process. The launcher handles the transition from Step 2 to Step 3 when the user successfully sets the app as the default launcher.
 
 In the context of your previous request about handling manual default launcher settings, this launcher is part of the **"normal case"** flow where the user explicitly goes through the onboarding process.
 
-
+![App](/docs/screenshot/requestlauncher-fun.png)
 
 ## isDefaultLauncher Function Explanation
 This function checks whether the app is currently set as the default launcher **(home app)** on the device. It works differently depending on the Android version:
@@ -81,14 +77,13 @@ This function checks whether the app is currently set as the default launcher **
 - In **OnboardingActivity.onResume()** to check if the app should advance to **Step 3**.
 - In **checkAndHandleDefaultLauncherReturn()** to handle returning to the onboarding flow after setting the app as default.
 
-
+![App](/docs/screenshot/isDefaultLauncher-fun.png)
 
 
 ## requestDefaultLauncher Function Explanation
 This function initiates the process of requesting the user to set the app as the default launcher **(home app)**. Here's what it does step by step:
 1. First, it saves a preference **default_launcher_requested** as true to track that the app has initiated the default launcher request process
 2. Then it handles the request differently based on the Android version:
-
 
 ### For Android 10 (Q) and above:
 - It gets the RoleManager system service
@@ -97,7 +92,6 @@ This function initiates the process of requesting the user to set the app as the
 - It launches this intent using the previously defined **roleRequestLauncher (which is an ActivityResultLauncher)**.
 - The result of this request will be handled by the **roleRequestLauncher** callback we saw earlier.
 - It logs that the role request was launched.
-
 
 ### For Android 9 (Pie) and below:
 - It creates an Intent with **ACTION_MAIN** and **CATEGORY_HOME**.
@@ -111,7 +105,7 @@ This function initiates the process of requesting the user to set the app as the
 3. The system then returns control to the app, with the result being handled by the **roleRequestLauncher** callback.
 
 
-
+![App](/docs/screenshot/request-launcher-fun.png)
 
 
 
@@ -130,6 +124,7 @@ The navigateToStep function manages navigation between different steps in an onb
 7. 
 This function is a key part of the onboarding flow, allowing the app to navigate between different onboarding steps while maintaining the current state.
 
+![App](/docs/screenshot/navigate-fun.png)
 
 ## checkAndHandleDefaultLauncherReturn()
 This function checks if the user is returning to the activity after setting the app as the default launcher and handles the navigation accordingly:
@@ -161,11 +156,7 @@ This function completes the onboarding process:
 This would typically be called when the user completes all onboarding steps and is ready to use the main app.
 
 
-
-
-
-
-
+![App](/docs/screenshot/pref-fun.png)
 
 ## onNewIntent(intent: Intent)
 This function is called when the activity receives a new intent while it's already running:
@@ -186,7 +177,7 @@ This function is called when the activity becomes visible to the user after bein
    3. If both conditions are met, it logs a debug message indicating the app became the default launcher while in the background.
    4. Then navigates to step 3 of the onboarding process.
 This handles the scenario where the user manually sets the app as the default launcher from system settings while the app is in the background, ensuring the onboarding flow continues appropriately when the user returns to the app.
-
+![App](/docs/screenshot/overrides-fun.png)
       
 ## Fragment Class Explanation
 The **Step1Fragment, Step2Fragment and Step3Fragment** class represents the first , second and third  step in an app onboarding process. Here's what it does:
@@ -213,6 +204,10 @@ The **Step1Fragment, Step2Fragment and Step3Fragment** class represents the firs
 3. **onDestroyView**
     - Cleans up resources when the fragment's view is destroyed
     - Sets the binding reference to null to prevent memory leaks
+
+![App](/docs/screenshot/step1-fun.png)
+![App](/docs/screenshot/step2-fun.png)
+![App](/docs/screenshot/step3-fun.png)
 
 ## Reference
 **Timber** is a lightweight and extensible logging library for Android, developed by Jake Wharton. It wraps Android’s native Log class and provides a cleaner, more flexible API for logging.
