@@ -2,9 +2,9 @@
 
 # Screenshot 
 
-| Step 1                                           | Step 2                                           | Step 3                                             | Step 4                                            | Step 5                                            |
-|--------------------------------------------------|--------------------------------------------------|----------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
-| ![Step 1](/docs/docs/screenshot/screen-one.jpeg) | ![Step 2](/docs/docs/screenshot/screen-two.jpeg) | ![Step 3](/docs/docs/screenshot/screen-three.jpeg) | ![Step 4](/docs/docs/screenshot/screen-four.jpeg) | ![Step 5](/docs/docs/screenshot/screen-five.jpeg) |
+| Step 1                                      | Step 2                                      | Step 3                                        | Step 4                                       | Step 5                                       |
+|---------------------------------------------|---------------------------------------------|-----------------------------------------------|----------------------------------------------|----------------------------------------------|
+| ![Step 1](/docs/screenshot/screen-one.jpeg) | ![Step 2](/docs/screenshot/screen-two.jpeg) | ![Step 3](/docs/screenshot/screen-three.jpeg) | ![Step 4](/docs/screenshot/screen-four.jpeg) | ![Step 5](/docs/screenshot/screen-five.jpeg) |
 
 # Getting Started
 
