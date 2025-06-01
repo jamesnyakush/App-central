@@ -4,19 +4,16 @@ import android.app.role.RoleManager
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.jamesnyakush.appcentral.R
 import com.jamesnyakush.appcentral.databinding.ActivityOnboardingBinding
-import com.jamesnyakush.appcentral.presentation.home.activity.HomeActivity
-import com.jamesnyakush.appcentral.presentation.home.viewmodel.HomeViewModel
-import com.jamesnyakush.appcentral.presentation.onboarding.viewmodel.OnboardingViewModel
 import com.jamesnyakush.appcentral.presentation.onboarding.fragment.Step1Fragment
 import com.jamesnyakush.appcentral.presentation.onboarding.fragment.Step2Fragment
 import com.jamesnyakush.appcentral.presentation.onboarding.fragment.Step3Fragment
+import com.jamesnyakush.appcentral.presentation.onboarding.viewmodel.OnboardingViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -27,6 +24,10 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
     private val viewModel: OnboardingViewModel by viewModel()
 
+    /**
+     * Activity result launcher for requesting the default launcher role.
+     * This is used to handle the result when the user sets the app as the default launcher.
+     */
     private val roleRequestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { _ ->
@@ -56,6 +57,10 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Handles the case when the activity is launched with a new intent.
+     * This is useful for scenarios like returning from the default launcher setting.
+     */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
@@ -66,6 +71,10 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Handles the case when the activity is resumed, checking if the app became the default launcher.
+     * If so, it navigates to step 3.
+     */
     override fun onResume() {
         super.onResume()
 
@@ -79,6 +88,10 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Checks if the activity was launched from the default launcher setting and handles navigation.
+     * @return true if navigation was handled, false otherwise.
+     */
     private suspend fun checkAndHandleDefaultLauncherReturn(): Boolean {
         if (
             intent.getBooleanExtra(
@@ -95,6 +108,10 @@ class OnboardingActivity : AppCompatActivity() {
         return false
     }
 
+    /**
+     * Navigates to the specified onboarding step.
+     * @param step The step number to navigate to (1, 2, or 3).
+     */
     fun navigateToStep(step: Int) {
         viewModel.navigateToStep(step)
 
@@ -111,6 +128,10 @@ class OnboardingActivity : AppCompatActivity() {
             .commit()
     }
 
+    /**
+     * Checks if the app is set as the default launcher.
+     * @return true if the app is the default launcher, false otherwise.
+     */
     fun requestDefaultLauncher() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val roleManager = getSystemService(ROLE_SERVICE) as RoleManager
@@ -133,6 +154,10 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Completes the onboarding process and finishes the activity.
+     * This should be called when the user has completed all onboarding steps.
+     */
     fun finishOnboarding() {
         lifecycleScope.launch {
             viewModel.completeOnboarding()
