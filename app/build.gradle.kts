@@ -75,4 +75,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation( libs.timber)
+
+    // ViewModel and LiveData
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Koin for dependency injection
+    implementation(libs.koin.android)
 }
