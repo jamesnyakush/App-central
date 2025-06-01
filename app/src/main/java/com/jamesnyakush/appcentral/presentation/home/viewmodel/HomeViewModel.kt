@@ -8,14 +8,16 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
-/*
- * HomeViewModel is responsible for managing the state of the home screen
- * It retrieves the onboarding state and provides a method to check if onboarding is completed.,
- */
+
 class HomeViewModel(
     getOnboardingStateUseCase: GetOnboardingStateUseCase
 ) : ViewModel() {
 
+    /**
+     * StateFlow that holds the current onboarding state.
+     * It is initialized with the result of the GetOnboardingStateUseCase.
+     * The state will be shared and will only emit updates while the app is subscribed.
+     */
     val onboardingState: StateFlow<OnboardingState> = getOnboardingStateUseCase()
         .stateIn(
             viewModelScope,
@@ -23,6 +25,9 @@ class HomeViewModel(
             OnboardingState(isOnboardingComplete = true)
         )
 
+    /**
+     * Checks if the onboarding process has been completed.
+     */
     fun isOnboardingCompleted(): Boolean {
         return onboardingState.value.isOnboardingComplete
     }
