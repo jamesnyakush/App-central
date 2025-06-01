@@ -40,6 +40,10 @@ class HomeActivity : AppCompatActivity() {
         checkOnboardingStatus()
     }
 
+    /**
+     * Handles the case when the activity is launched with a new intent
+     * This is useful for scenarios like returning from the OnboardingActivity
+     */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
 
