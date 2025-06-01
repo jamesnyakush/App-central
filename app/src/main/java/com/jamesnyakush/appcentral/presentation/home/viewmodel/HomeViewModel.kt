@@ -20,10 +20,10 @@ class HomeViewModel(
         .stateIn(
             viewModelScope,
             SharingStarted.Companion.WhileSubscribed(5000),
-            OnboardingState()
+            OnboardingState(isOnboardingComplete = true)
         )
 
     fun isOnboardingCompleted(): Boolean {
-        return onboardingState.value.isCompleted
+        return onboardingState.value.isOnboardingComplete
     }
 }

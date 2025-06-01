@@ -12,11 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-/* *
- * OnboardingViewModel is responsible for managing the state of the onboarding process.
- * It retrieves the current onboarding state, allows navigation to different steps,
- * and handles completion of the onboarding process.
- */
 class OnboardingViewModel(
     getOnboardingStateUseCase: GetOnboardingStateUseCase,
     private val updateOnboardingStepUseCase: UpdateOnboardingStepUseCase,
@@ -24,11 +19,11 @@ class OnboardingViewModel(
     private val checkDefaultLauncherUseCase: CheckDefaultLauncherUseCase
 ) : ViewModel() {
 
-    val onboardingState: StateFlow<OnboardingState> = getOnboardingStateUseCase()
+    var onboardingState: StateFlow<OnboardingState> = getOnboardingStateUseCase()
         .stateIn(
             viewModelScope,
             SharingStarted.Companion.WhileSubscribed(5000),
-            OnboardingState()
+            OnboardingState(isOnboardingComplete = true)
         )
 
     fun navigateToStep(step: Int) {

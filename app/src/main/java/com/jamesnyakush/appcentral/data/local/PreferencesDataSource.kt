@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import androidx.core.content.edit
 
-class PreferencesDataSource(context: Context) {
+class PreferencesDataSource(
+    context: Context
+) {
     private val prefs: SharedPreferences = context.getSharedPreferences(
         PreferenceKeys.PREFERENCES_NAME, Context.MODE_PRIVATE
     )

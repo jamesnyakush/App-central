@@ -24,7 +24,8 @@ class OnboardingRepositoryImpl(
             OnboardingState(
                 isCompleted = completed,
                 currentStep = step,
-                isDefaultLauncherRequested = requested
+                isDefaultLauncherRequested = requested,
+                isOnboardingComplete = true
             )
         }
     }

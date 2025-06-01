@@ -4,12 +4,15 @@ import android.app.role.RoleManager
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.jamesnyakush.appcentral.R
 import com.jamesnyakush.appcentral.databinding.ActivityOnboardingBinding
+import com.jamesnyakush.appcentral.presentation.home.activity.HomeActivity
+import com.jamesnyakush.appcentral.presentation.home.viewmodel.HomeViewModel
 import com.jamesnyakush.appcentral.presentation.onboarding.viewmodel.OnboardingViewModel
 import com.jamesnyakush.appcentral.presentation.onboarding.fragment.Step1Fragment
 import com.jamesnyakush.appcentral.presentation.onboarding.fragment.Step2Fragment
@@ -131,7 +134,10 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     fun finishOnboarding() {
-        viewModel.completeOnboarding()
+        lifecycleScope.launch {
+            viewModel.completeOnboarding()
+        }
         finish()
     }
+
 }
