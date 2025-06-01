@@ -46,9 +46,10 @@ class Step2Fragment : Fragment() {
 
         if (isDefault) {
             Timber.tag(TAG).d("App is default launcher, navigating to step 3")
-            // Save the current step in case we get interrupted
+
             activity?.getSharedPreferences("home_app_prefs", Context.MODE_PRIVATE)?.edit()
                 ?.putInt("current_onboarding_step", 3)?.apply()
+
             (activity as OnboardingActivity).navigateToStep(3)
         } else {
             Timber.tag(TAG).d("App is NOT default launcher, staying on step 2")

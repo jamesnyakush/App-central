@@ -31,7 +31,6 @@ class Step1Fragment : Fragment() {
             Timber.tag(TAG).d("Continue button clicked, navigating to step 2")
             (activity as OnboardingActivity).navigateToStep(2)
         }
-
     }
 
     override fun onDestroyView() {

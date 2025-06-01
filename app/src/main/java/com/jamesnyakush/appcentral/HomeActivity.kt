@@ -46,11 +46,13 @@ class HomeActivity : AppCompatActivity() {
      */
     private fun checkOnboardingStatus(intentFlags: Int = 0) {
         val sharedPrefs = getSharedPreferences("home_app_prefs", MODE_PRIVATE)
+
         val onboardingCompleted = sharedPrefs.getBoolean("onboarding_completed", false)
         val defaultLauncherRequested = sharedPrefs.getBoolean("default_launcher_requested", false)
 
         if (!onboardingCompleted) {
             Timber.tag(TAG).d("Onboarding not completed, redirecting")
+
             val onboardingIntent = Intent(this, OnboardingActivity::class.java)
             onboardingIntent.putExtra("FROM_DEFAULT_LAUNCHER_SETTING", defaultLauncherRequested)
 

@@ -131,12 +131,14 @@ class OnboardingActivity : AppCompatActivity() {
             if (roleManager.isRoleAvailable(RoleManager.ROLE_HOME)) {
                 val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_HOME)
                 roleRequestLauncher.launch(intent)
+
                 Timber.tag(TAG).d("Launched role request for home")
             }
         } else {
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_HOME)
             startActivity(intent)
+
             Timber.tag(TAG).d("Launched home intent chooser")
         }
     }

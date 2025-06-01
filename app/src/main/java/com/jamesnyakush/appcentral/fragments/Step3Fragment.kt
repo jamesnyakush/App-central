@@ -32,7 +32,6 @@ class Step3Fragment : Fragment() {
             Timber.tag(TAG).d("Continue button clicked, finishing onboarding")
             (activity as OnboardingActivity).finishOnboarding()
         }
-
     }
 
     override fun onDestroyView() {
