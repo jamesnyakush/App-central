@@ -21,6 +21,17 @@ To run the project locally, follow these steps:
 * [ViewBinding](https://developer.android.com/topic/libraries/view-binding) -  in Android provides a modern, safer, and more efficient way to interact with XML views in your Kotlin or Java code. Here are the main benefits of using ViewBinding:
 * [SharedPreferences](https://developer.android.com/training/data-storage/shared-preferences) - API provides a simple way to store small amounts of key-value data persistently. It’s ideal for saving user preferences, app settings, or flags (like whether onboarding is completed). The data is stored in an XML file and remains available even after the app is closed or the device is restarted. You can access SharedPreferences in either private mode (only accessible by your app) or shared across processes. It’s lightweight, fast, and easy to use, making it perfect for storing simple, non-sensitive data.
 
+## Contributing
+If you would like to contribute to this project, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear messages.
+4. Push your changes to your forked repository.
+5. Create a pull request to the main repository.
+6. Your pull request will be reviewed, and if approved, it will be merged into the main branch.
+7. Please ensure your code adheres to the project's coding standards and includes appropriate tests.
+8. If you are adding new features, please update the documentation accordingly.
+9. If you are fixing bugs, please include a description of the issue and how your changes resolve it.
 ## License
 ```
 Copyright (c) 2025 James Nyakundi 
