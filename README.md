@@ -32,6 +32,8 @@ If you would like to contribute to this project, please follow these steps:
 7. Please ensure your code adheres to the project's coding standards and includes appropriate tests.
 8. If you are adding new features, please update the documentation accordingly.
 9. If you are fixing bugs, please include a description of the issue and how your changes resolve it.
+
+
 ## License
 ```
 Copyright (c) 2025 James Nyakundi 
